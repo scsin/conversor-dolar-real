@@ -12,6 +12,7 @@ class Home extends React.Component {
             dolarValue:"",
             stateRate: "",
             paymentType: "",
+            price: this.GetApiData(),
         }
     }
 
@@ -34,8 +35,16 @@ class Home extends React.Component {
         this.calculate();
     }
 
+    async GetApiData() {
+        const axios = require('axios');
+        const response = await axios.get('https://economia.awesomeapi.com.br/all/USD-BRL');
+        const price = response.data['USD']['bid'];
+        this.setState({'price': price})
+    }
+
     calculate = () => {
-        console.log(parseInt(this.state.dolarValue))
+        console.log(parseInt(this.state.dolarValue) + 1)
+        console.log(this.state)
     }
 
     render() {
@@ -43,8 +52,8 @@ class Home extends React.Component {
             <div className="homepage">
                 <Input getValue={(e) => this.handleChange((e), 'dolarValue')} typet="text" one="Valor em Dólar" />
                 <Input getValue={(e) => this.handleChange((e), 'stateRate')} typet="text" one="Taxa do Estado" />
-                <Select id="dinheiro" title="Dinheiro" getType={(e) => this.handleChange((e), 'paymentType')} name="paymentType" checked={this.state.paymentType === 'dinheiro'} />
-                <Select id="cartao" title="Cartão" getType={(e) => this.handleChange((e), 'paymentType')} name="paymentType" checked={this.state.paymentType === 'cartao'} />
+                <Select id="Dinheiro" title="Dinheiro" getType={(e) => this.handleChange((e), 'paymentType')} name="paymentType" checked={this.state.paymentType === 'dinheiro'} />
+                <Select id="Cartão" title="Cartão" getType={(e) => this.handleChange((e), 'paymentType')} name="paymentType" checked={this.state.paymentType === 'cartao'} />
                 <Button style={{backgroundColor: "#69306D", fontWeight: 500}} onClick={this.handleClick} one="CALCULAR" />
             </div>
         )
