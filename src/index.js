@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import axios from 'axios';
+
+const port = axios.create({
+    baseURL: process.env.REACT_APP_CONVERSOR_URL
+})
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
@@ -11,6 +16,4 @@ ReactDOM.render(<App />, document.getElementById('root'));
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-const express = require('express');
-
-express().listen(process.env.PORT || 3000);
+export default port;

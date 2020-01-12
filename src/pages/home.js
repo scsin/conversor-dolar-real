@@ -25,7 +25,7 @@ class Home extends React.Component {
 
     handleChange = (e, element) => {
         const newState = this.state;
-        if (e.target.value == 'on') {
+        if (e.target.value === 'on') {
             newState[element] = e.target.id;
         } else {
             newState[element] = e.target.value;
@@ -43,12 +43,12 @@ class Home extends React.Component {
     }
 
     SetValueIOF = () => {
-        if (this.state.paymentType == 'Dinheiro') {
-            this.state.valueIOF = '0.011';
+        if (this.state.paymentType === 'Dinheiro') {
+            this.setState({ 'valueIOF': '0.011' });
         } else {
-            this.state.valueIOF = '0.064';
+            this.setState({ 'valueIOF': '0.064' });
         }
-        this.calculate();
+        this.Calculate();
     }
 
     async GetApiData() {
@@ -58,7 +58,7 @@ class Home extends React.Component {
         this.setState({ 'price': price });
     }
 
-    calculate = () => {
+    Calculate = () => {
         const valueDolarSI = parseFloat(this.state.dolarValue);
         const valueDolarCI = (parseFloat(this.state.dolarValue)) + ((parseFloat(this.state.dolarValue)) * (parseFloat(this.state.stateRate)));
         const valueRealSI = parseFloat(this.state.dolarValue) * parseFloat(this.state.price);
