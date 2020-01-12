@@ -4,7 +4,7 @@ function Input(props){
     return(
         <div>
             <form>
-                <input onChange={props.getValue} type={props.typet} placeholder={props.one}></input>
+                <input className="Input" onChange={props.getValue} type={props.typet} placeholder={props.one}></input>
             </form>
         </div>
     )

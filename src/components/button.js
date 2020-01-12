@@ -3,7 +3,7 @@ import React from 'react';
 function Button(props) {
     return (
         <div>
-            <button style={props.style} className="waves-effect waves-light btn #e64a19 deep-orange darken-2" onClick={props.onClick}>{props.one}</button>
+            <button className={"Button"} className="waves-effect waves-light btn #00897b teal darken-3" onClick={props.onClick}>{props.one}</button>
         </div>
     )
 }
