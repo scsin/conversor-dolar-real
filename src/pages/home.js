@@ -27,6 +27,11 @@ class Home extends React.Component {
         const newState = this.state;
         if (e.target.value === 'on') {
             newState[element] = e.target.id;
+            if (e.target.id === 'Dinheiro') {
+                newState['valueIOF'] = 0.011;
+            } else {
+                newState['valueIOF'] = 0.064;
+            }
         } else {
             newState[element] = e.target.value;
         }
@@ -39,16 +44,7 @@ class Home extends React.Component {
             stateRate: this.state.stateRate,
             paymentType: this.state.paymentType,
         }
-        this.SetValueIOF();
-    }
-
-    SetValueIOF = () => {
-        if (this.state.paymentType === 'Dinheiro') {
-            this.setState({ 'valueIOF': '0.011' });
-        } else {
-            this.setState({ 'valueIOF': '0.064' });
-        }
-        this.Calculate();
+        this.Calculate()
     }
 
     async GetApiData() {
@@ -60,16 +56,15 @@ class Home extends React.Component {
 
     Calculate = () => {
         const valueDolarSI = parseFloat(this.state.dolarValue);
-        const valueDolarCI = (parseFloat(this.state.dolarValue)) + ((parseFloat(this.state.dolarValue)) * (parseFloat(this.state.stateRate)));
-        const valueRealSI = parseFloat(this.state.dolarValue) * parseFloat(this.state.price);
-        const valueRealCI = (parseFloat(this.state.dolarValue) + parseFloat(this.state.stateRate)) * (parseFloat(this.state.price) + parseFloat(this.state.valueIOF));
+        const valueDolarCI = ((parseFloat(this.state.dolarValue)) + ((parseFloat(this.state.dolarValue)) * (parseFloat(this.state.stateRate)))).toFixed(4);
+        const valueRealSI = (parseFloat(this.state.dolarValue) * parseFloat(this.state.price)).toFixed(4);
+        const valueRealCI = ((parseFloat(this.state.dolarValue) + parseFloat(this.state.stateRate)) * (parseFloat(this.state.price) + parseFloat(this.state.valueIOF))).toFixed(4);
         
         this.setState({ 'valueDolarSI': valueDolarSI });
         this.setState({ 'valueDolarCI': valueDolarCI });
         this.setState({ 'valueRealSI': valueRealSI });
         this.setState({ 'valueRealCI': valueRealCI });
     }
-    // const x = (parseInt(this.state.dolarValue) + parseInt(this.state.stateRate) + parseInt(this.state.valueIOF)) * parseInt(this.state.price)
 
     render() {
         return (
