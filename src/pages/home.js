@@ -56,7 +56,7 @@ class Home extends React.Component {
 
     Calculate = () => {
         const valueDolarSI = parseFloat(this.state.dolarValue);
-        const valueDolarCI = ((parseFloat(this.state.dolarValue)) + ((parseFloat(this.state.dolarValue)) * (parseFloat(this.state.stateRate)/100))).toFixed(4);
+        const valueDolarCI = (((parseFloat(this.state.dolarValue)) + ((parseFloat(this.state.dolarValue)) * (parseFloat(this.state.stateRate)/100))) + (parseFloat(this.state.dolarValue) * parseFloat(this.state.valueIOF))).toFixed(4);
         const valueRealSI = (parseFloat(this.state.dolarValue) * parseFloat(this.state.price)).toFixed(4);
         const valueRealCI = ((((parseFloat(this.state.dolarValue)) + (parseFloat(this.state.dolarValue) * (parseFloat(this.state.stateRate)/100))) * (parseFloat(this.state.price))) + (parseFloat(this.state.dolarValue) * parseFloat(this.state.valueIOF))).toFixed(4);
 
