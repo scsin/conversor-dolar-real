@@ -64,6 +64,8 @@ class Home extends React.Component {
         this.setState({ 'valueDolarCI': valueDolarCI });
         this.setState({ 'valueRealSI': valueRealSI });
         this.setState({ 'valueRealCI': valueRealCI });
+
+        console.log(this.state.valueIOF)
     }
 
     render() {
